@@ -49,7 +49,7 @@
 ## table
 
 - .references :user, foreign_key: true
-- .references :item,
+- .references :item, foreign_key: true
 
 -----------
 # Category
