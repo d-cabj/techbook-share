@@ -9,6 +9,7 @@ class CreatePurchaseHistories < ActiveRecord::Migration
       t.string :telnumber
       t.string :postcode
       t.string :address
+      t.integer :total
       t.timestamps null: false
     end
   end

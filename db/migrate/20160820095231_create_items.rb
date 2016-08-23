@@ -3,11 +3,12 @@ class CreateItems < ActiveRecord::Migration
     create_table :items do |t|
       t.string :title
       t.text :discription
+      t.string :condition
       t.string :itemImg
       t.references :category
       t.integer :price
       t.integer :postage
-      t.timestamps null: false
+      t.timestamps
     end
   end
 end
