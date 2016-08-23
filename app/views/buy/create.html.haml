@@ -24,29 +24,29 @@
                 %i.pe-7s-check.text-success
               .content
                 %h2.heading.uppercase.mt-0.text-success 購入が完了しました。
-                %p ご登録いただいたメール宛にお支払情報に関するご案内を送信させていただきます。
+                %p ご登録いただいたメール宛にお支払情報に関するご案内を送信させていただきます。３日以内に振り込みいただけない場合はキャンセル扱いとなりますのでご了承ください。
             .clearfix.mb-20
               .col-xs-8.col-md-4.pl-0
-                %img{:alt => "", :src => "/assets/books/book1.png"}/
+                %img{:alt => "#{@purchase_information.item.title}", src: @purchase_information.item.itemImg}
             .confirmation-content
               .section-title.text-left
                 %h4 お届け先詳細
               %ul.book-sum-list
                 %li
                   %span.font600 宛名:
-                  せきや じょうじ 様
+                  = "#{@purchase_information.last_name}" + " #{@purchase_information.first_name} 様"
                 %li
                   %span.font600 書籍名:
-                  ランディングページ・デザインメソッド
+                  = @purchase_information.item.title
                 %li
                   %span.font600 お届け先郵便番号:
-                  150-0000
+                  = @purchase_information.postcode
                 %li
                   %span.font600> お届け先住所:
-                  東京都渋谷区道玄坂２丁目新大宗ビル３号館８階
+                  = @purchase_information.address
                 %li
                   %span.font600> お支払金額合計:
-                  1200円
+                  = "#{@purchase_information.total}円"
             .text-right
               %button.btn.btn-primary.btn-inverse マイページへ
         .col-sm-4.col-md-3.mt-50-xs

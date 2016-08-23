@@ -31,20 +31,20 @@
                   .col-xs-7.col-sm-7
                     本体価格
                   .col-xs-5.col-sm-5.text-right
-                    1200円
+                    = "#{@item.price}円"
                 .row.gap-10.mt-10
                   .col-xs-7.col-sm-7
                     送料
                   .col-xs-5.col-sm-5.text-right
-                    200円
+                    = "#{@item.postage}円"
                 .row.gap-10.mt-10
                   .col-xs-7.col-sm-7
                     消費税
                   .col-xs-5.col-sm-5.text-right
-                    96円
+                    = "#{@tax}円"
               %li.divider
               %li.text-right.font600.font14
-                1296円
+                = "#{@total}円"
               %li.divider
               %li
                 .row.gap-10.font600.font14
@@ -58,14 +58,15 @@
                     %h5.heading.mt-0.mb-0.text-white Amount due
                     %p.font12 合計金額
                   .col-xs-6.col-sm-6.text-right
-                    %span.block.font20.font600.mb-5 1200円
+                    %span.block.font20.font600.mb-5
+                      = "#{@total}円"
         .col-sm-8.col-md-9{:role => "main"}
           .section-title.text-left
             %h3
               ランディングページ・デザインメソッド
               %small を購入します。
           .payment-container
-            = form_tag('/buy/1/completed', controller: 'buy', action: 'create', method: 'post') do
+            = form_tag("/buy/#{@item.id}/completed", controller: 'buy', action: 'create', method: 'post') do
               .payment-box
                 .payment-header.clearfix
                   .number
@@ -116,6 +117,7 @@
                           住所:
                         .col-sm-6.col-md-6
                           = text_field :address, nil, name: 'address', placeholder:'東京都渋谷区道玄坂２丁目新大宗ビル３号館８階', class: 'form-control'
+                          = hidden_field :total, nil, name: "total", value: "#{@total}"
               .checkbox-block
                 %input#accept_booking.checkbox{:name => "accept_booking", :type => "checkbox", :value => "paymentsCreditCard"}/
                 %label{:for => "accept_booking"}
@@ -131,8 +133,10 @@
             %h4.heading.mt-0.text-primary.uppercase 注文内容
             %ul.price-summary-list
               %li
-                %h6.heading.mt-0.mb-0 ランディングページ・デザインメソッド
-                %p.font12.text-light デザイン
+                %h6.heading.mt-0.mb-0
+                  = @item.title
+                %p.font12.text-light
+                  = @item.category.name
               %li.divider
               %li
                 %h6.heading.mt-20.mb-5.text-primary.uppercase 価格内訳
@@ -140,20 +144,20 @@
                   .col-xs-7.col-sm-7
                     本体価格
                   .col-xs-5.col-sm-5.text-right
-                    1200円
+                    = "#{@item.price}円"
                 .row.gap-10.mt-10
                   .col-xs-7.col-sm-7
                     送料
                   .col-xs-5.col-sm-5.text-right
-                    200円
+                    = "#{@item.postage}円"
                 .row.gap-10.mt-10
                   .col-xs-7.col-sm-7
                     消費税
                   .col-xs-5.col-sm-5.text-right
-                    96円
+                    = "#{@tax}円"
               %li.divider
               %li.text-right.font600.font14
-                1296円
+                = "#{@total}円"
               %li.divider
               %li
                 .row.gap-10.font600.font14
@@ -167,4 +171,5 @@
                     %h5.heading.mt-0.mb-0.text-white Amount due
                     %p.font12 合計金額
                   .col-xs-6.col-sm-6.text-right
-                    %span.block.font20.font600.mb-5 1200円
+                    %span.block.font20.font600.mb-5
+                      = "#{@total}円"
