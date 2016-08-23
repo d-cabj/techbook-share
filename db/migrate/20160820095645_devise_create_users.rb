@@ -21,8 +21,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
 # ここからカラム追記
       t.string   :nickname
-      t.string   :first_name
       t.string   :last_name
+      t.string   :first_name
+      t.integer  :telnumber
       t.string   :postcode
       t.string   :address
       t.string   :profileImg
