@@ -10,5 +10,7 @@ Rails.application.routes.draw do
     end
   end
   resources :category, only: [:show, :index]
+  get 'buy/:id' => "buy#new" # 購入ページの表示
+  post 'buy/:id/completed' => "buy#create" # purchaseHistoryテーブルを更新して購入完了ページへ遷移
 
 end
