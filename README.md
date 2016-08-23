@@ -50,6 +50,12 @@
 
 - .references :user, foreign_key: true
 - .references :item, foreign_key: true
+- .string :first_name
+- .string :last_name
+- .string :telnumber
+- .string :postcode
+- .string :address
+- .string :email
 
 -----------
 # Category
