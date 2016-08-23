@@ -101,14 +101,14 @@
                       .form-group.gap-20
                         %label.col-sm-4.col-md-4.control-label 電話番号:
                         .col-sm-6.col-md-6
-                          = telephone_field :telnumber, nil, name: 'telnumber', placeholder: '090-1111-oooo', class: 'form-control'
+                          = telephone_field :telnumber, nil, name: 'telnumber', placeholder: '090++++****(ハイフン(-)を除いた7桁の整数)', class: 'form-control'
                     .form-horizontal
                       .form-group.gap-20
                         %label.col-sm-4.col-md-4.control-label
                           %spna.necessary-info> *
                           郵便番号:
                         .col-sm-6.col-md-6
-                          = text_field :postcode, nil, name: 'postcode', placeholder:'150-9999', class: 'form-control'
+                          = text_field :postcode, nil, name: 'postcode', placeholder:'1509999(ハイフン(-)を除いた7桁の整数い)', class: 'form-control'
                     .form-horizontal
                       .form-group.gap-20
                         %label.col-sm-4.col-md-4.control-label
