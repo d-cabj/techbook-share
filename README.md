@@ -33,10 +33,11 @@
 
 ## table
 
-- .string :title, index: true
+- .string :title
 - .text :discription
+- .string :condition
 - .string :itemImg
-- .references :category, foreign_key: true
+- .references :category
 - .integer :price
 - .integer :postage
 
@@ -55,6 +56,7 @@
 - .string :telnumber
 - .string :postcode
 - .string :address
+- .integer :total
 - .string :email
 
 -----------
