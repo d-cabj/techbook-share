@@ -34,8 +34,14 @@ ActiveRecord::Schema.define(version: 20160820095645) do
   create_table "purchase_histories", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "item_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "last_name",  limit: 255
+    t.string   "first_name", limit: 255
+    t.string   "email",      limit: 255
+    t.integer  "telnumber",  limit: 8
+    t.string   "postcode",   limit: 255
+    t.string   "address",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,8 +56,9 @@ ActiveRecord::Schema.define(version: 20160820095645) do
     t.string   "current_sign_in_ip",     limit: 255
     t.string   "last_sign_in_ip",        limit: 255
     t.string   "nickname",               limit: 255
-    t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
+    t.string   "first_name",             limit: 255
+    t.integer  "telnumber",              limit: 4
     t.string   "postcode",               limit: 255
     t.string   "address",                limit: 255
     t.string   "profileImg",             limit: 255
