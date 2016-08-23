@@ -236,7 +236,7 @@ jQuery(function($) {
     /**
      * Raty - Rating Star
      */
-    $.fn.raty.defaults.path = 'images/raty';
+    $.fn.raty.defaults.path = 'assets/raty';
     
     // Default size star 
     $('.star-rating').raty({
