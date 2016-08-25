@@ -28,5 +28,6 @@ group :development do
 end
 
 group :production do
+  # herokuで使用されるassts complile用のgem
   gem 'rails_12factor'
 end
