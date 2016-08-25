@@ -5,13 +5,13 @@
     .container
       %ol.breadcrumb-list.booking-step
         %li
-          %a{:href => ""} トップ
+          =link_to "トップ", "/"
         %li
-          %a{:href => "#"} 検索結果
+          =link_to "検索結果", "#"
         %li
-          %a{:href => "#"} 詳細ページ
+          =link_to "詳細ページ", "#"
         %li
-          %a{:href => "#"} 購入ページ
+          =link_to "購入ページ", "/buy/#{@item.id}"
         %li
           %span 完了画面
   .content-wrapper
@@ -48,7 +48,7 @@
                   %span.font600> お支払金額合計:
                   = "#{@purchase_information.total}円"
             .text-right
-              %button.btn.btn-primary.btn-inverse マイページへ
+              %button.btn.btn-primary.btn-inverse{href: "/"} マイページへ
         .col-sm-4.col-md-3.mt-50-xs
           %aside.sidebar.with-filter
             .sidebar-inner
