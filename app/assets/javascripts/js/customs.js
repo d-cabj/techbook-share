@@ -112,10 +112,15 @@ jQuery(function($) {
     /**
      * Sign-in Modal
      */
+    // ログインフォーム
     var $formLogin = $('#login-form');
+    // パスワード忘れた時に表示されるフォーム
     var $formLost = $('#lost-form');
+    // 新規登録フォーム
     var $formRegister = $('#register-form');
+    // 上記三つのフォームを囲うdiv
     var $divForms = $('#modal-login-form-wrapper');
+    // 時間
     var $modalAnimateTime = 300;
     
     $('#login_register_btn').on("click", function () { modalAnimate($formLogin, $formRegister) });
