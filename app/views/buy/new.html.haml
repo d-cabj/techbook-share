@@ -5,7 +5,7 @@
     .container
       %ol.breadcrumb-list.booking-step
         %li
-          %a{:href => ""} トップページ
+          %a{:href => "/"} トップページ
         %li
           %a{:href => "#"} 検索結果
         %li
@@ -83,21 +83,21 @@
                           %spna.necessary-info> *
                           姓:
                         .col-sm-6.col-md-6
-                          = text_field :last_name, nil, name: 'last_name', placeholder: 'せきや', class: "form-control"
+                          = text_field :last_name, nil, name: 'last_name', value: 'せきや', class: "form-control"
                     .form-horizontal
                       .form-group.gap-20
                         %label.col-sm-4.col-md-4.control-label
                           %spna.necessary-info> *
                           名:
                         .col-sm-6.col-md-6
-                          = text_field :first_name, nil, placeholder: 'じょうじ', name: 'first_name', class: 'form-control'
+                          = text_field :first_name, nil, value: 'じょうじ', name: 'first_name', class: 'form-control'
                     .form-horizontal
                       .form-group.gap-20
                         %label.col-sm-4.col-md-4.control-label
                           %spna.necessary-info> *
                           メールアドレス:
                         .col-sm-6.col-md-6
-                          = email_field :email, nil, name: 'email', placeholder: 'george-sekiya@hoge.com', class: 'form-control'
+                          = email_field :email, nil, name: 'email', value: 'george-sekiya@hoge.com', class: 'form-control'
                     .form-horizontal
                       .form-group.gap-20
                         %label.col-sm-4.col-md-4.control-label 電話番号:
@@ -116,7 +116,7 @@
                           %spna.necessary-info> *
                           住所:
                         .col-sm-6.col-md-6
-                          = text_field :address, nil, name: 'address', placeholder:'東京都渋谷区道玄坂２丁目新大宗ビル３号館８階', class: 'form-control'
+                          = text_field :address, nil, name: 'address', value:'東京都渋谷区道玄坂２丁目新大宗ビル３号館８階', class: 'form-control'
                           = hidden_field :total, nil, name: "total", value: "#{@total}"
               .checkbox-block
                 %input#accept_booking.checkbox{:name => "accept_booking", :type => "checkbox", :value => "paymentsCreditCard"}/
