@@ -1,4 +1,4 @@
-#introLoader.introLoading
+/ #introLoader.introLoading
 / BEGIN # MODAL LOGIN
 #loginModal.modal.fade.modal-login.modal-border-transparent{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
   .modal-dialog
@@ -12,6 +12,7 @@
         %form#login-form
           .modal-body.pb-5
             %h4.text-center.heading.mt-10.mb-20 ログイン
+            .js-error
             %button.btn.btn-facebook.btn-block Facebookでログイン
             .modal-seperator
               %span or
@@ -20,23 +21,24 @@
                 = f.text_field :nickname, autofocus: true, placeholder: "ユーザーネーム", class: "form-control", id: "login_username"
               .form-group
                 = f.text_field :password, placeholder: "パスワード", class: "form-control", id: "login_username"
-              .form-group
-                .row.gap-5
-                  .col-xs-6.col-sm-6.col-md-6
-                    .checkbox-block.fa-checkbox
-                      = f.check_box :remember_me, id: "remember_me_checkbox", class: "checkbox"
-                      = f.label :remember_me, "ログイン情報を記憶"
-                  .col-xs-6.col-sm-6.col-md-6.text-right
+              - if devise_mapping.rememberable?
+                .form-group
+                  .row.gap-5
+                    .col-xs-6.col-sm-6.col-md-6
+                      .checkbox-block.fa-checkbox
+                        = f.check_box :remember_me, id: "remember_me_checkbox", class: "checkbox"
+                        = f.label :remember_me, "ログイン情報を記憶"
+                    .col-xs-6.col-sm-6.col-md-6.text-right
                     %button#login_lost_btn.btn.btn-link{:type => "button"} パスワードをお忘れですか?
-          .modal-footer
-            .row.gap-10
-              .col-xs-6.col-sm-6.mb-10
-                %button.btn.btn-primary.btn-block{:type => "submit"} ログイン
-              .col-xs-6.col-sm-6.mb-10
-                %button.btn.btn-primary.btn-block.btn-inverse{"aria-label" => "Close", "data-dismiss" => "modal", :type => "submit"} 戻る
-            .text-left
-              まだアカウントをお持ちでない場合は
-              %button#login_register_btn.btn.btn-link{:type => "button"} こちら
+              .modal-footer
+                .row.gap-10
+                  .col-xs-6.col-sm-6.mb-10
+                    = f.submit "ログイン", class: "btn btn-primary btn-block"
+                  .col-xs-6.col-sm-6.mb-10
+                    %button.btn.btn-primary.btn-block.btn-inverse{"aria-label" => "Close", "data-dismiss" => "modal", :type => "submit"} 戻る
+                .text-left
+                  まだアカウントをお持ちでない場合は
+                  %button#login_register_btn.btn.btn-link{:type => "button"} こちら
         / End # Login Form
         / Begin | Lost Password Form
         %form#lost-form{:style => "display:none;"}
@@ -55,25 +57,29 @@
               .col-xs-6.col-sm-6
                 %button.btn.btn-primary.btn-inverse.btn-block{"aria-label" => "Close", "data-dismiss" => "modal", :type => "submit"} 戻る
         / End | Lost Password Form
+
         / Begin | Register Form
-        %form#register-form{:style => "display:none;"}
+
+        / invalid authenticity tokenというエラーがでていたので、authenticity_token: trueを下記のように設定してエラー回避。remote true設定に伴い生じた事象のようである
+        = form_for(resource, as: resource_name, url: user_registration_path, method: :post, html:{id: "register-form", style: "display:none;"}, authenticity_token: true, remote: true) do |f|
           .modal-body.pb-5
+            .js-error
             %h3.text-center.heading.mt-10.mb-20 新規登録
             %button.btn.btn-facebook.btn-block Facebookで登録
             .modal-seperator
               %span or
             .form-group
-              %input#register_username.form-control{:placeholder => "ユーザーネーム", :type => "text"}/
+              = f.text_field :nickname, class: "form-control", id: "register_username", placeholder: "ユーザーネーム"
             .form-group
-              %input#register_email.form-control{:placeholder => "Emailアドレス", :type => "email"}/
+              = f.email_field :email, class: "form-control", id: "register_email", placeholder: "emailアドレス"
             .form-group
-              %input#register_password.form-control{:placeholder => "パスワード", :type => "password"}/
+              = f.password_field :password, autofocus: true, autocomplete: "off", placeholder: "パスワード", id: "register_password", class: "form-control"
             .form-group
-              %input#register_password_confirm.form-control{:placeholder => "パスワードを再入力", :type => "password"}/
+              = f.password_field :password_confirmation, id: "register_password_confirm", placeholder: "パスワード再入力", autocomplete: "off", class: "form-control"
           .modal-footer.mt-10
             .row.gap-10
               .col-xs-6.col-sm-6.mb-10
-                %button.btn.btn-primary.btn-block{:type => "submit"} 登録
+                = f.submit "登録", class: "btn btn-primary btn-block"
               .col-xs-6.col-sm-6.mb-10
                 %button.btn.btn-primary.btn-inverse.btn-block{"aria-label" => "Close", "data-dismiss" => "modal", :type => "submit"} 戻る
             .text-left
@@ -92,25 +98,28 @@
         .container
           .flex-row.flex-align-middle
             .flex-shrink.flex-columns
-              %a.navbar-logo{:href => "index.html"}
-                %img{:alt => "Logo", :src => "assets/techbook_logo.png"}/
+              = link_to image_tag("techbook_logo.png"), root_path, alt: "Logo", class: "navbar-logo"
             .flex-columns
               .pull-right
                 .navbar-mini
                   %ul.clearfix
-                    %li.dropdown.bt-dropdown-click.hidden-xs
-                      %a#currncy-dropdown.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :role => "button"}
-                        %i.ion-android-settings.hidden-xss
-                        メニュー
-                        %span.caret
-                      %ul.dropdown-menu{"aria-labelledby" => "language-dropdown"}
-                        %li
-                          %a{:href => "#"} マイページ
-                        %li
-                          %a{:href => "#"} ログアウト
-                    %li.user-action
-                      %a.btn{"data-toggle" => "modal", :href => "#loginModal"} ログイン／新規登録
-      #slicknav-mobile
-      #js_flash_masseges
-        = render "layouts/messages"
+                    - if user_signed_in?
+                      %li.dropdown.bt-dropdown-click.hidden-xs
+                        %a#currncy-dropdown.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :role => "button"}
+                          %i.ion-android-settings.hidden-xss
+                          メニュー
+                          %span.caret
+                        %ul.dropdown-menu{"aria-labelledby" => "language-dropdown"}
+                          %li
+                            = link_to "マイページ", user_path(current_user)
+                          %li
+                            = link_to "ログアウト", destroy_user_session_path
+                    - else
+                      %li.user-action
+                        %a.btn{"data-toggle" => "modal", :href => "#loginModal"} ログイン／新規登録
+                      / data-toggle: "modal"でheader上部の#loginModalを呼び出している
+                      / data-dissmiss: "modal"で該当modalを閉じている
+    #slicknav-mobile
+    #js_flash_massages
+      = render "layouts/messages"
     / end Navbar (Header)
