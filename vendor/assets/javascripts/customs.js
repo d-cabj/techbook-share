@@ -1,5 +1,5 @@
 
-jQuery(function($) {
+$(document).on("turbolinks:load", function() {
 
   "use strict";
 
@@ -8,18 +8,18 @@ jQuery(function($) {
     /**
      * introLoader - Preloader
      */
-    $("#introLoader").introLoader({
-      animation: {
-          name: 'gifLoader',
-          options: {
-              ease: "easeInOutCirc",
-              style: 'dark bubble',
-              delayBefore: 500,
-              delayAfter: 0,
-              exitTime: 300
-          }
-      }
-    });  
+    // $("#introLoader").introLoader({
+    //   animation: {
+    //       name: 'gifLoader',
+    //       options: {
+    //           ease: "easeInOutCirc",
+    //           style: 'dark bubble',
+    //           delayBefore: 500,
+    //           delayAfter: 0,
+    //           exitTime: 300
+    //       }
+    //   }
+    // });  
 
     
     
@@ -94,7 +94,7 @@ jQuery(function($) {
     /**
      * Smooth scroll to anchor
      */
-    $('a.anchor[href*=#]:not([href=#])').on("click",function() {
+    $('a.anchor[href*="#"]:not([href="#"])').on("click",function() {
       if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
         var target = $(this.hash);
         target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
@@ -241,7 +241,7 @@ jQuery(function($) {
     /**
      * Raty - Rating Star
      */
-    $.fn.raty.defaults.path = 'assets/raty';
+    $.fn.raty.defaults.path = '/assets/raty';
     
     // Default size star 
     $('.star-rating').raty({
@@ -445,4 +445,4 @@ jQuery(function($) {
 
     });
 
-})(jQuery);
+});
