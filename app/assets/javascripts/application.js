@@ -26,6 +26,7 @@
 //= require jquery.responsivegrid
 //= require ion.rangeSlider.min
 //= require readmore.min
+//= require sidebar
 //= require slick.min
 //= require spin.min
 //= require jquery.raty
