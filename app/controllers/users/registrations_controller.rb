@@ -3,9 +3,9 @@ before_action :configure_sign_up_params, only: [:create]
 before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    # super
+  end
 
   # POST /resource
   # POST /resource
@@ -20,13 +20,13 @@ before_action :configure_account_update_params, only: [:update]
         sign_up(resource_name, resource)
         redirect_to :back
       else
-        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
-        redirect_to :back
+        render :new
       end
     else
       clean_up_passwords resource
       set_minimum_password_length
+      flash[:error] = resource.errors.full_messages
       render :new
     end
   end
