@@ -10,7 +10,7 @@ before_action :configure_account_update_params, only: [:update]
   # POST /resource
   # POST /resource
   def create
-    binding.pry
+    # binding.pry
     build_resource(sign_up_params)
 
     resource.save
