@@ -521,7 +521,7 @@ if (typeof jQuery === 'undefined') {
     .on('click.bs.carousel.data-api', '[data-slide]', clickHandler)
     .on('click.bs.carousel.data-api', '[data-slide-to]', clickHandler)
 
-  $(window).on('load', function () {
+  $(window).on("page:load", function () {
     $('[data-ride="carousel"]').each(function () {
       var $carousel = $(this)
       Plugin.call($carousel, $carousel.data())
@@ -2346,7 +2346,7 @@ if (typeof jQuery === 'undefined') {
   // AFFIX DATA-API
   // ==============
 
-  $(window).on('load', function () {
+  $(window).on('page:load', function () {
     $('[data-spy="affix"]').each(function () {
       var $spy = $(this)
       var data = $spy.data()

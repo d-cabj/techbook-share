@@ -434,7 +434,7 @@ $(document).on("turbolinks:load", function() {
       });
     }
 
-    $(document).ready(function() {
+    $(document).on("page:change", function() {
       
       $('#instagram').on('didLoadInstagram', didLoadInstagram);
       $('#instagram').instagram({
