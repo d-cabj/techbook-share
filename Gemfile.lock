@@ -76,6 +76,7 @@ GEM
     execjs (2.7.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    google-analytics-rails (1.1.0)
     haml (4.0.7)
       tilt
     haml-rails (0.9.0)
@@ -213,6 +214,7 @@ DEPENDENCIES
   devise
   devise-i18n
   erb2haml
+  google-analytics-rails
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails

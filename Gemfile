@@ -31,4 +31,5 @@ end
 group :production do
   # herokuで使用されるassts complile用のgem
   gem 'rails_12factor'
+  gem 'google-analytics-rails'
 end
