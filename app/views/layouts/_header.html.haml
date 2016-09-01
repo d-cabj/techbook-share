@@ -18,7 +18,7 @@
               %span or
             = form_for(resource, as: resource_name, url: user_session_path, remote: true) do |f|
               .form-group
-                = f.text_field :nickname, autofocus: true, placeholder: "ユーザーネーム", class: "form-control", id: "login_username"
+                = f.text_field :nickname, autofocus: true, placeholder: "ニックネーム", class: "form-control", id: "login_username"
               .form-group
                 = f.text_field :password, placeholder: "パスワード", class: "form-control", id: "login_username"
               - if devise_mapping.rememberable?
@@ -63,13 +63,13 @@
         / invalid authenticity tokenというエラーがでていたので、authenticity_token: trueを下記のように設定してエラー回避。remote true設定に伴い生じた事象のようである
         = form_for(resource, as: resource_name, url: user_registration_path, method: :post, html:{id: "register-form", style: "display:none;"}, authenticity_token: true, remote: true) do |f|
           .modal-body.pb-5
-            .js-error
             %h3.text-center.heading.mt-10.mb-20 新規登録
+            .js_registrations-error
             %button.btn.btn-facebook.btn-block Facebookで登録
             .modal-seperator
               %span or
             .form-group
-              = f.text_field :nickname, class: "form-control", id: "register_username", placeholder: "ユーザーネーム"
+              = f.text_field :nickname, class: "form-control", id: "register_username", placeholder: "ニックネーム"
             .form-group
               = f.email_field :email, class: "form-control", id: "register_email", placeholder: "emailアドレス"
             .form-group
