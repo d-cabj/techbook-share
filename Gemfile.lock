@@ -69,7 +69,6 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.1.0)
     erb2haml (0.1.5)
       html2haml
     erubis (2.7.0)
@@ -212,7 +211,6 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.1.0)
   devise
-  devise-i18n
   erb2haml
   google-analytics-rails
   haml-rails
