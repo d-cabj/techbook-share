@@ -1,6 +1,5 @@
 / sidebar
-%script{:src => "/assets/js/sidebar.js", :type => "text/javascript"}
-
+/ %script{:src => "/assets/js/sidebar.js", :type => "text/javascript"}
 .clear
 / start Main Wrapper
 .main-wrapper.scrollspy-container
@@ -9,36 +8,41 @@
     .container
       .flex-row
         .flex-column.flex-md-8.flex-sm-12
-          %h1.hero-title ランディングページ・デザインメソッド
-          %p.line18 WEB制作のプロが教えるLPの考え方、設計、コーディング、コンテンツ制作ガイド
+          %h1.hero-title
+            = @item.title
+          %p.line18
+            = @item.discription
         .flex-column.flex-md-4.flex-align-bottom.flex-sm-12.mt-20-sm
           .text-right.text-left-sm
-            %a.anchor.btn.btn-primary{:href => "#"} 購入ページヘ
+            =link_to "購入ページへ", "/buy/#{@item.id}", class: "anchor btn btn-primary"
   / end Page title
   .breadcrumb-wrapper.bg-light-2
     .container
       %ol.breadcrumb-list
         %li
-          %a{:href => "#"} Home
+          =link_to "Home", "/"
         %li
-          %a{:href => "#"} デザイン
+          =link_to "#{@item.category.name}", "/category/#{@item.category_id}"
         %li
-          %span ランディングページ・デザインメソッド
+          %span
+            = @item.title
   .content-wrapper
     .container
       .row
         .col-sm-3.col-xs-12.mb-50-xs
           .scrollspy-sidebar.sidebar-detail{:role => "complementary"}
-            %img{:alt => "", :src => "/assets/books/book1.png"}/
+            =image_tag(@item.itemImg, alt: @item.title)
         .col-md-9.mt-30-xs{:role => "main"}
           .detail-content-wrapper
             #section-0.detail-content
               .section-title.text-left
-                %h4 概要
-              %h5.heading ランディングページ・デザインメソッド
+                %h4 "概要"
+              %h5.heading
+                = @item.title
               %h5.price.mt-0
-                合計金額:
-                %span 1200円
+                = "合計金額: "
+                %span
+                  = "#{@total} 円"
             #section-2.detail-content
               .section-title.text-left
                 %h4 詳細
@@ -47,71 +51,45 @@
                   .col-sm-4.col-sm-3
                     %ul.list-info.no-icon.bb-dotted
                       %li
-                        %span.font600 出品者:
-                        %a{:href => "#"} せきやじょうじ
+                        %span.font600
+                          = "出品者: "
+                        =link_to "#{current_user.last_name} #{current_user.first_name}", "/users/#{current_user.id}"
                       %li
-                        %span.font600 本体価格:
-                        1000円
+                        %span.font600
+                          = "本体価格: "
+                        = "#{@item.price}円"
                       %li
-                        %span.font600 送料:
-                        200円
+                        %span.font600
+                          = "消費税: "
+                        = "#{@tax}円"
                       %li
-                        %span.font600 カテゴリ:
-                        デザイン
+                        %span.font600
+                          = "送料: "
+                        = "#{@item.postage}円"
                       %li
-                        %span.font600 状態:
-                        やや傷あり
+                        %span.font600
+                          = "カテゴリ: "
+                        = "#{@item.category.name}"
+                      %li
+                        %span.font600
+                          = "状態: "
+                        = "#{@item.condition}"
                   .col-sm-8.col-md-9
                     .itinerary-wrapper
                       .itinerary-item
-                        %h5.mb-20 この本について
+                        %h5.mb-20
+                          = "どんな本？"
                         .intro-item-body
                           %p
-                            ランディングページのデザインのための、マーケティングやコンバージョンなどに関する幅広い知識を身につけることができます。
-                            %br>/
-                            2016年の秋に購入し、角にやや傷がありますが、中身はまだまだ綺麗なので問題なう読んでいただけるかと思います。
+                            = @item.discription
                 .text-center.pt-10
-                  %a.btn.btn-primary.btn-full-width{:href => "#"} 購入ページヘ
+                  %a.btn.btn-primary.btn-full-width{:href => "/buy/#{@item.id}"} 購入ページヘ
             .detail-content
               .section-title.text-left
                 %h4 関連する書籍
               .GridLex-gap-20-wrappper.package-grid-item-wrapper.on-page-result-page.alt-smaller
                 .GridLex-grid-noGutter-equalHeight
-                  .GridLex-col-4_sm-4_xs-12.mb-20
-                    .package-grid-item
-                      %a{:href => "#"}
-                        .image
-                          %img{:alt => "Tour Package", :src => "/assets/books/book9.jpg"}/
-                          .absolute-in-image
-                            .duration
-                              %span デザイン
-                        .content.clearfix
-                          %h6 だから、そのデザインはダメなんだ。
-                          .absolute-in-content
-                            .price $1500
-                  .GridLex-col-4_sm-4_xs-12.mb-20
-                    .package-grid-item
-                      %a{:href => "#"}
-                        .image
-                          %img{:alt => "Tour Package", :src => "/assets/books/book9.jpg"}/
-                          .absolute-in-image
-                            .duration
-                              %span デザイン
-                        .content.clearfix
-                          %h6 だから、そのデザインはダメなんだ。
-                          .absolute-in-content
-                            .price $1500
-                  .GridLex-col-4_sm-4_xs-12.mb-20
-                    .package-grid-item
-                      %a{:href => "#"}
-                        .image
-                          %img{:alt => "Tour Package", :src => "/assets/books/book9.jpg"}/
-                          .absolute-in-image
-                            .duration
-                              %span デザイン
-                        .content.clearfix
-                          %h6 だから、そのデザインはダメなんだ。
-                          .absolute-in-content
-                            .price $1500
+                  = render partial: "sameCategoryItem",collection: @sameCategoryItems
+                = paginate @sameCategoryItems
             .call-to-action
-              %a.btn.btn-primary.btn-sm.btn-inverse{:href => "#"} お問い合わせ
+              =link_to "お問い合わせ", "/", class: "btn btn-primary btn-sm btn-inverse"

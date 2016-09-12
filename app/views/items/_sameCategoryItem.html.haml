@@ -1,0 +1,17 @@
+.GridLex-col-4_sm-4_xs-12.mb-20
+  .package-grid-item
+    =link_to "/items/#{sameCategoryItem.id}" do
+      .image
+        =image_tag(sameCategoryItem.itemImg, alt: sameCategoryItem.title)
+        .absolute-in-image
+          .duration
+            %span
+              = sameCategoryItem.category.name
+      .content.clearfix
+        %h6
+          = sameCategoryItem.title
+        .absolute-in-content
+          .price
+            = "#{sameCategoryItem.price}円"
+            / %br
+            / = "（税・送料別）"
