@@ -2,12 +2,12 @@
 / start Main Wrapper
 .main-wrapper.scrollspy-container
   / start end Page title
-  .page-title{:style => "background-image:url('images/my_room.jpeg');"}
+  .page-title{:style => "background-image:url('/assets/my_room.jpeg');"}
     .container
       .row
         .col-sm-10.col-sm-offset-1.col-md-6.col-md-offset-3
           %h2.text-white せきやじょうじ
-          .user-thumbnail.mb-10{:style => "background-image:url('images/sekiya.jpeg');"}
+          .user-thumbnail.mb-10{style: "background-image: url(#{@profileImg});"}
             / <img src="images/books/book9.jpg" alt="" class="user-thumbnail">
   / end Page title
   .content-wrapper
@@ -17,52 +17,67 @@
           .payment-box
             .payment-header.clearfix
               %h5.heading.mt-0 購入者情報
-            .payment-content
+            = form_for(current_user, html:{class: "payment-content"} ) do |f|
               .payment-traveller.mb-0
                 .form-horizontal
                   .form-group.gap-20
-                    %label.col-sm-4.col-md-4.control-label 姓
+                    =f.label :nickname, "ニックネーム", class: "col-sm-4 col-md-4 control-label"
                     .col-sm-8.col-md-6
-                      %input.form-control{:type => "text", :value => "せきや"}/
+                      =f.text_field :nickname, placeholder: "#{current_user.nickname}", class: "form-control"
                 .form-horizontal
                   .form-group.gap-20
-                    %label.col-sm-4.col-md-4.control-label 名
+                    =f.label :last_name, "性", class: "col-sm-4 col-md-4 control-label"
                     .col-sm-8.col-md-6
-                      %input.form-control{:type => "text", :value => "じょうじ"}/
+                      =f.text_field :last_name, placeholder: "#{current_user.last_name}", class: "form-control"
                 .form-horizontal
                   .form-group.gap-20
-                    %label.col-sm-4.col-md-4.control-label 郵便番号:
+                    =f.label :first_name, "名", class: "col-sm-4 col-md-4 control-label"
                     .col-sm-8.col-md-6
-                      %input.form-control{:type => "text", :value => "150-0042"}/
+                      =f.text_field :last_name, placeholder: "#{current_user.first_name}", class: "form-control"
                 .form-horizontal
                   .form-group.gap-20
-                    %label.col-sm-4.col-md-4.control-label 住所:
+                    =f.label :postcode, "郵便番号", class: "col-sm-4 col-md-4 control-label"
                     .col-sm-8.col-md-6
-                      %input.form-control{:type => "text", :value => "東京都渋谷区道玄坂2丁目"}/
+                      =f.text_field :postcode, placeholder: "#{current_user.postcode}", class: "form-control"
+                .form-horizontal
+                  .form-group.gap-20
+                    =f.label :address, "住所", class: "col-sm-4 col-md-4 control-label"
+                    .col-sm-8.col-md-6
+                      =f.text_field :address, placeholder: "#{current_user.address}", class: "form-control"
+                .form-horizontal
+                  .form-group.gap-20
+                    =f.label "プロフィール画像", class: "col-sm-4 col-md-4 control-label"
+                    .col-sm-8.col-md-6
+                      .user-thumbnail{style: "background-image: url(#{@profileImg}); margin: 0px;"}
+                .form-horizontal
+                  .form-group.gap-20
+                    =f.label :profileImg, "*プロフィール画像設定・変更", placeholder: "#{@profileImg}", class: "col-sm-4 col-md-4 control-label"
+                    .col-sm-8.col-md-6
+                      =f.file_field :profileImg, placeholder: "#{current_user.profileImg}", class: "form-control"
               .text-center
-                %button.btn.btn-primary.btn-sm.btn-inverse 購入者情報の編集
+                = f.submit "購入者情報の編集", class: "btn btn-primary btn-sm btn-inverse"
           .payment-box
             .payment-header.clearfix
               %h5.heading.mt-0 登録情報
-            .payment-content
+            = form_for(current_user, html:{class: "payment-content"} ) do |f|
               .payment-traveller.mb-0
                 .form-horizontal
                   .form-group.gap-20
-                    %label.col-sm-4.col-md-4.control-label メールアドレス:
+                    =f.label :email, "メールアドレス", class: "col-sm-4 col-md-4 control-label"
                     .col-sm-8.col-md-6
-                      %input.form-control{:type => "email", :value => "jeorge_sekiya@hoge.com"}/
+                      =f.email_field :email, placeholder: "#{current_user.email}", class: "form-control"
                 .form-horizontal
                   .form-group.gap-20
-                    %label.col-sm-4.col-md-4.control-label 現在のパスワード:
+                    =f.label :old_email, "現在のパスワード", class: "col-sm-4 col-md-4 control-label"
                     .col-sm-8.col-md-6
-                      %input.form-control{:type => "password", :value => ""}/
+                      =f.password_field :old_email, class: "form-control", autocomplete: "off"
                 .form-horizontal
                   .form-group.gap-20
-                    %label.col-sm-4.col-md-4.control-label 新しいパスワード:
+                    =f.label :email, "新しいパスワード", class: "col-sm-4 col-md-4 control-label"
                     .col-sm-8.col-md-6
-                      %input.form-control{:type => "password", :value => ""}/
+                      =f.password_field :email, class: "form-control", autocomplete: "off"
               .text-center
-                %button.btn.btn-primary.btn-sm.btn-inverse 登録情報の編集
+                = f.submit "登録情報の更新", class: "btn btn-primary btn-sm btn-inverse"
         .col-sm-4.col-md-4.mt-50-xs
           %aside.sidebar
             .sidebar-inner.no-border.for-blog
@@ -71,40 +86,7 @@
                 %h4.sidebar-title 購入履歴
                 .sidebar-module-inner
                   %ul.sidebar-post
-                    %li.clearfix
-                      %a{:href => "blog-single.html"}
-                        .image
-                          %img{:alt => "Popular Post", :src => "images/books/book1.png"}/
-                        .content
-                          %h6 ランディングページ・デザインメソッド
-                          %p.recent-post-sm-meta
-                            %i.fa.fa-clock-o.mr-5>
-                            June 01, 2016
-                    %li.clearfix
-                      %a{:href => "blog-single.html"}
-                        .image
-                          %img{:alt => "Popular Post", :src => "images/books/book2.png"}/
-                        .content
-                          %h6 すっきり分かるJAVA入門
-                          %p.recent-post-sm-meta
-                            %i.fa.fa-clock-o.mr-5>
-                            April 25, 2016
-                    %li.clearfix
-                      %a{:href => "blog-single.html"}
-                        .image
-                          %img{:alt => "Popular Post", :src => "images/books/book3.jpeg"}/
-                        .content
-                          %h6 Learing PHP
-                          %p.recent-post-sm-meta
-                            %i.fa.fa-clock-o.mr-5>
-                            March 20, 2016
-                    %li.clearfix
-                      %a{:href => "blog-single.html"}
-                        .image
-                          %img{:alt => "Popular Post", :src => "images/books/book4.png"}/
-                        .content
-                          %h6 パーフェクト Ruby on Rails
-                          %p.recent-post-sm-meta
-                            %i.fa.fa-clock-o.mr-5>
-                            March 05, 2016
-              .clear
+                    - @purchaseBooks.each do |purchaseBook|
+                      = render partial: "purchaseBooks", locals: {purchaseBook: purchaseBook}
+                    = paginate(@purchaseBooks)
+

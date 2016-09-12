@@ -1,0 +1,10 @@
+%li.clearfix
+  =link_to "/items/#{purchaseBook.item.id}" do
+    .image
+      %img{:alt => "Popular Post", :src => "#{purchaseBook.item.itemImg}"}/
+    .content
+      %h6
+        = purchaseBook.item.title
+      %p.recent-post-sm-meta
+        %i.fa.fa-clock-o.mr-5>
+        = purchaseBook.created_at.strftime("%Y %b %d")
