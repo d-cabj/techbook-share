@@ -65,15 +65,15 @@ form do |f|
   f.inputs 'item' do
     # hiddenフィールドを用いる場合は書き方に注意
     f.input :admin_user_id, :as => :hidden, :input_html => { :value => "#{current_admin_user.id}" }
-    f.input :title
+    f.input :title, label: "タイトル"
     # selectボックスを使う場合の書き方に注意
-    f.input :category_id, :as => :select, :collection => Category.all.collect {|category| [category.name, category.id] }
-    f.input :discription
+    f.input :category_id, :as => :select, :collection => Category.all.collect {|category| [category.name, category.id] }, label:"カテゴリー"
+    f.input :discription, label:"詳細"
     # selectボックスを使う場合の書き方に注意
-    f.input :condition, :as => :select, :collection => ["新品", "ほぼ新品", "非常に良い", "良い", "可", "出品不可"]
-    f.input :itemImg, :as => :file
-    f.input :price, placeholder: "半角数字で入力してください（例：1000）"
-    f.input :postage, placeholder: "半角数字で入力してください（例：1000）"
+    f.input :condition, :as => :select, :collection => ["新品", "ほぼ新品", "非常に良い", "良い", "可", "出品不可"], label:"コンディション"
+    f.input :itemImg, :as => :file, label:"画像"
+    f.input :price, placeholder: "半角数字で入力してください（例：1000）", label:"本体価格（送料別）"
+    f.input :postage, placeholder: "半角数字で入力してください（例：1000）", label:"送料"
   end
   actions
 end
