@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902030623) do
+ActiveRecord::Schema.define(version: 20160909082125) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -54,16 +54,19 @@ ActiveRecord::Schema.define(version: 20160902030623) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "discription", limit: 65535
-    t.string   "condition",   limit: 255
-    t.string   "itemImg",     limit: 255
-    t.integer  "category_id", limit: 4
-    t.integer  "price",       limit: 4
-    t.integer  "postage",     limit: 4
+    t.string   "title",         limit: 255
+    t.text     "discription",   limit: 65535
+    t.string   "condition",     limit: 255
+    t.string   "itemImg",       limit: 255
+    t.integer  "category_id",   limit: 4
+    t.integer  "price",         limit: 4
+    t.integer  "postage",       limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "admin_user_id", limit: 4
   end
+
+  add_index "items", ["admin_user_id"], name: "index_items_on_admin_user_id", using: :btree
 
   create_table "purchase_histories", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -104,4 +107,5 @@ ActiveRecord::Schema.define(version: 20160902030623) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "items", "admin_users"
 end
