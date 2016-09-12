@@ -1,6 +1,13 @@
 ja:
   activerecord:
     errors:
+      models:
+        user:
+          blank: は必須項目です
+        item:
+          blank: は必須項目です
+        purchaseHistory:
+          blank: は必須項目です
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
         restrict_dependent_destroy:
