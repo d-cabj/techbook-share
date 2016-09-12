@@ -5,11 +5,11 @@
     .container
       %ol.breadcrumb-list.booking-step
         %li
-          %a{:href => "/"} トップページ
+          =link_to "トップページ", "/"
         %li
-          %a{:href => "#"} 検索結果
+          =link_to "検索結果", "/"
         %li
-          %a{:href => "#"} 詳細画面
+          =link_to "詳細画面", "/items/#{params[:id]}"
         %li
           %span お支払い
         %li
@@ -22,8 +22,10 @@
             %h4.heading.mt-0.text-primary.uppercase 注文内容
             %ul.price-summary-list
               %li
-                %h6.heading.mt-0.mb-0 ランディングページ・デザインメソッド
-                %p.font12.text-light デザイン
+                %h6.heading.mt-0.mb-0
+                  = @item.title
+                %p.font12.text-light
+                  = @item.category.name
               %li.divider
               %li
                 %h6.heading.mt-20.mb-5.text-primary.uppercase 価格内訳
@@ -63,7 +65,7 @@
         .col-sm-8.col-md-9{:role => "main"}
           .section-title.text-left
             %h3
-              ランディングページ・デザインメソッド
+              = @item.title
               %small を購入します。
           .payment-container
             = form_tag("/buy/#{@item.id}/completed", controller: 'buy', action: 'create', method: 'post') do
@@ -83,43 +85,43 @@
                           %spna.necessary-info> *
                           姓:
                         .col-sm-6.col-md-6
-                          = text_field :last_name, nil, name: 'last_name', value: 'せきや', class: "form-control"
+                          = text_field :last_name, nil, name: 'last_name', value: "#{current_user.last_name}", class: "form-control"
                     .form-horizontal
                       .form-group.gap-20
                         %label.col-sm-4.col-md-4.control-label
                           %spna.necessary-info> *
                           名:
                         .col-sm-6.col-md-6
-                          = text_field :first_name, nil, value: 'じょうじ', name: 'first_name', class: 'form-control'
+                          = text_field :first_name, nil, name: 'first_name', value: "#{current_user.first_name}", class: 'form-control'
                     .form-horizontal
                       .form-group.gap-20
                         %label.col-sm-4.col-md-4.control-label
                           %spna.necessary-info> *
                           メールアドレス:
                         .col-sm-6.col-md-6
-                          = email_field :email, nil, name: 'email', value: 'george-sekiya@hoge.com', class: 'form-control'
+                          = email_field :email, nil, name: 'email', value: "#{current_user.email}", class: 'form-control'
                     .form-horizontal
                       .form-group.gap-20
                         %label.col-sm-4.col-md-4.control-label 電話番号:
                         .col-sm-6.col-md-6
-                          = telephone_field :telnumber, nil, name: 'telnumber', placeholder: '090++++****(ハイフン(-)を除いた整数)', class: 'form-control'
+                          = telephone_field :telnumber, nil, name: 'telnumber', placeholder: "#{current_user.telnumber}(ハイフン(-)を除いた半角整数)", class: 'form-control'
                     .form-horizontal
                       .form-group.gap-20
                         %label.col-sm-4.col-md-4.control-label
                           %spna.necessary-info> *
                           郵便番号:
                         .col-sm-6.col-md-6
-                          = text_field :postcode, nil, name: 'postcode', placeholder:'1509999(ハイフン(-)を除いた7桁の整数い)', class: 'form-control'
+                          = text_field :postcode, nil, name: 'postcode', placeholder: "#{current_user.postcode}(ハイフン(-)を除いた7桁の半角整数)", class: 'form-control'
                     .form-horizontal
                       .form-group.gap-20
                         %label.col-sm-4.col-md-4.control-label
                           %spna.necessary-info> *
                           住所:
                         .col-sm-6.col-md-6
-                          = text_field :address, nil, name: 'address', value:'東京都渋谷区道玄坂２丁目新大宗ビル３号館８階', class: 'form-control'
+                          = text_field :address, nil, name: 'address', value: "#{current_user.address}", class: 'form-control'
                           = hidden_field :total, nil, name: "total", value: "#{@total}"
               .checkbox-block
-                %input#accept_booking.checkbox{:name => "accept_booking", :type => "checkbox", :value => "paymentsCreditCard"}/
+                = check_box :checkRulePolicy, nil, id: "accept_booking", name: "checkRulePolicy", checked_value: "1", unchecked_value: nil, type: "checkbox", class: "accept_booking checkbox"
                 %label{:for => "accept_booking"}
                   %a{:href => "#"}> 利用規約
                   及び
