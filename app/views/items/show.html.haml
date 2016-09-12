@@ -53,7 +53,7 @@
                       %li
                         %span.font600
                           = "出品者: "
-                        =link_to "#{current_user.last_name} #{current_user.first_name}", "/users/#{current_user.id}"
+                        =link_to "#{@item.admin_user.nickname}"
                       %li
                         %span.font600
                           = "本体価格: "
