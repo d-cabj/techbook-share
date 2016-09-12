@@ -1,13 +1,15 @@
 .GridLex-col-3_sm-4_xs-12.mb-30
   .package-grid-item
-    %a{:href => "detail-page.html"}
+    =link_to "/items/#{item.id}" do
       .image
-        %img{:alt => "Tour Package", :src => "/assets/books/book1.png"}/
+        =image_tag(item.itemImg, alt: item.title)
         .absolute-in-image
           .duration
-            %span デザイン
+            %span
+              = item.category.name
       .content.clearfix
-        %h5 ランディングページメソッド・デザインメソッド
+        %h5
+          = item.title
         .rating-wrapper
           .raty-wrapper
             .star-rating-read-only{"data-rating-score" => "4.0"}
@@ -15,4 +17,5 @@
         .absolute-in-content
           %span.btn
             %i.fa.fa-heart-o
-          .price $1422
+          .price
+            = "#{item.price} 円"
