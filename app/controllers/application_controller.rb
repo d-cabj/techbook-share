@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def judge_login
-    redirect_to root_path, set_flash_message!(:alert, "ログインしてください") unless user_signed_in?
+    redirect_to root_path, alert: "ログインしてください" unless user_signed_in?
   end
 
   # Overwriting the sign_out redirect path method
