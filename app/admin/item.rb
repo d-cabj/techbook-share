@@ -75,7 +75,7 @@ form do |f|
     f.input :price, placeholder: "半角数字で入力してください（例：1000）", label:"本体価格（送料別）"
     f.input :postage, placeholder: "半角数字で入力してください（例：1000）", label:"送料"
   end
-  actions
+  f.actions
 end
 
 
