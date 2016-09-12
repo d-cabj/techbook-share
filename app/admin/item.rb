@@ -3,7 +3,7 @@ ActiveAdmin.register Item do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :title, :discription, :condition, :itemImg, :category_id, :price, :postage
+permit_params :title, :discription, :condition, :itemImg, :category_id, :price, :postage, :admin_user_id
 
  index do
    # 選択した行を削除する
@@ -60,9 +60,25 @@ permit_params :title, :discription, :condition, :itemImg, :category_id, :price, 
       end
     end
   end
-# form do |f|
-#   f.inputs 'item' do
-#     f.input 
+
+form do |f|
+  f.inputs 'item' do
+    # hiddenフィールドを用いる場合は書き方に注意
+    f.input :admin_user_id, :as => :hidden, :input_html => { :value => "#{current_admin_user.id}" }
+    f.input :title
+    # selectボックスを使う場合の書き方に注意
+    f.input :category_id, :as => :select, :collection => Category.all.collect {|category| [category.name, category.id] }
+    f.input :discription
+    # selectボックスを使う場合の書き方に注意
+    f.input :condition, :as => :select, :collection => ["新品", "ほぼ新品", "非常に良い", "良い", "可", "出品不可"]
+    f.input :itemImg, :as => :file
+    f.input :price, placeholder: "半角数字で入力してください（例：1000）"
+    f.input :postage, placeholder: "半角数字で入力してください（例：1000）"
+  end
+  actions
+end
+
+
 # or
 #
 # permit_params do
