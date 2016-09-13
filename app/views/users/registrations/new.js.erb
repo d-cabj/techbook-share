@@ -1,7 +1,0 @@
-$("#modal-login-form-wrapper").css("height", "auto")
-<% error = flash[:error]%>
-<% error.each do |i| %>
-<% flash[:error] = i %>
-$(".js_registrations-error").append("<%= j(render 'layouts/messages') %>")
-<% end %>
-<% flash[:error] = error %>
