@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       #collectionはRails7つのアクション以外のアクション名を定義する時に使う
     end
   end
-  resources :category, only: [:show, :index]
+  # resources :category, only: [:show, :index] →items/searchでcategory/showを代用したため削除。カテゴリー一覧ページ(category/index)も不必要と判断したため削除。
   get 'buy/:id' => "buy#new" # 購入ページの表示
   post 'buy/:id/completed' => "buy#create" # purchaseHistoryテーブルを更新して購入完了ページへ遷移
 
