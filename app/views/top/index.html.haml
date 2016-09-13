@@ -13,23 +13,27 @@
         %p.lead エンジニアのための書籍シェアリングサービス
     .main-search-wrapper.full-width
       .inner
-        .column-item
-          .form-group
-            %select.select2-multi.form-control{"data-placeholder" => "カテゴリを選択", :name => "destination"}
-              %option{:value => ""} カテゴリを選択
-              %option{:value => "0"} HTML CSS
-              %option{:value => "ruby"} Ruby
-              %option{:value => "javascript"} JavaScript
-              %option{:value => "rails"} Ruby on Rails
-              %option{:value => "php"} PHP
-              %option{:value => "java"} Java
-              %option{:value => "php"} PHP
-        #long-column-item.column-item
-          .form-group
-            %input.form-control{:name => "month", :placeholder => "キーワード"}/
-        .column-item.for-btn
-          .form-group
-            %a.btn.btn-primary.btn-block{:href => "#"} 書籍を検索
+        =form_tag(search_items_path, controller: :items, action: :search, method: :get) do
+          .column-item
+            .form-group
+              =select_tag :searchCategory, options_for_select(@searchCategories), name: "searchCategory", :include_blank => "カテゴリを選択", class: "select2-multi form-control"
+              / %select.select2-multi.form-control{"data-placeholder" => "カテゴリを選択", :name => "destination"}
+              /   %option{:value => ""} カテゴリを選択
+              /   %option{:value => "0"} HTML CSS
+              /   %option{:value => "ruby"} Ruby
+              /   %option{:value => "javascript"} JavaScript
+              /   %option{:value => "rails"} Ruby on Rails
+              /   %option{:value => "php"} PHP
+              /   %option{:value => "java"} Java
+              /   %option{:value => "php"} PHP
+          #long-column-item.column-item
+            .form-group
+              = text_field :searchKeyword, nil, name: "searchKeyword", placeholder: "タイトルのキーワード", class: "form-control"
+              / %input.form-control{:name => "month", :placeholder => "キーワード"}/
+          .column-item.for-btn
+            .form-group
+              %button.btn.btn-primary.btn-block{type: "submit"} 書籍を検索
+              / %a.btn.btn-primary.btn-block{:type => "submit"} 書籍を検索
 %section.bg-light.new-books
   .container
     .row
