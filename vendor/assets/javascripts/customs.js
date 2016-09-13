@@ -1,3 +1,60 @@
+//  * Sticky Header
+//  */
++function ($) {
+  'use strict';
+  $(function() {
+    $(".container-wrapper").waypoint(function(direction) {
+      if (direction === "down"){
+        // if($(".navbar").hasClass("navbar-sticky-function")){
+          $(".navbar").removeClass("navbar-sticky-function");
+          $(".navbar").addClass("navbar-sticky");
+          console.log("down")
+        // }
+      }
+      else if (direction === "up"){
+        // if($(".navbar").hasClass("navbar-sticky")){
+          $(".navbar").removeClass("navbar-sticky");
+          $(".navbar").addClass("navbar-sticky-function");
+        console.log("up")
+        // }
+      }
+    }, { offset: "-20px" });
+  });
+
+    /**
+     * Sign-in Modal
+     */
+    // ログインフォーム
+  $(function() {
+    var $formLogin = $('#login-form');
+    // パスワード忘れた時に表示されるフォーム
+    var $formLost = $('#lost-form');
+    // 新規登録フォーム
+    var $formRegister = $('#register-form');
+    // 上記三つのフォームを囲うdiv
+    var $divForms = $('#modal-login-form-wrapper');
+    // 時間
+    var $modalAnimateTime = 300;
+    
+    $('#login_register_btn').on("click", function () { modalAnimate($formLogin, $formRegister) });
+    $('#register_login_btn').on("click", function () { modalAnimate($formRegister, $formLogin); });
+    $('#login_lost_btn').on("click", function () { modalAnimate($formLogin, $formLost); });
+    $('#lost_login_btn').on("click", function () { modalAnimate($formLost, $formLogin); });
+    $('#lost_register_btn').on("click", function () { modalAnimate($formLost, $formRegister); });
+    
+    function modalAnimate ($oldForm, $newForm) {
+      var $oldH = $oldForm.height();
+      var $newH = $newForm.height();
+      $divForms.css("height",$oldH);
+      $oldForm.fadeToggle($modalAnimateTime, function(){
+        $divForms.animate({height: $newH}, $modalAnimateTime, function(){
+          $newForm.fadeToggle($modalAnimateTime);
+        });
+      });
+    }
+  });
+}(jQuery);
+
 
 $(document).on("turbolinks:load", function() {
 
@@ -19,21 +76,9 @@ $(document).on("turbolinks:load", function() {
     //           exitTime: 300
     //       }
     //   }
-    // });  
+    // });
+    console.log("あ")
 
-    
-    
-    /**
-     * Sticky Header
-     */
-    $(".container-wrapper").waypoint(function() {
-      $(".navbar").toggleClass("navbar-sticky-function");
-      $(".navbar").toggleClass("navbar-sticky");
-      return false;
-    }, { offset: "-20px" });
-    
-    
-    
     /**
      * Main Menu Slide Down Effect
      */
@@ -110,35 +155,36 @@ $(document).on("turbolinks:load", function() {
     
     
     /**
-     * Sign-in Modal
+     * Sign-in Modal  ファイル上部に即時関数にして記述
+
      */
-    // ログインフォーム
-    var $formLogin = $('#login-form');
-    // パスワード忘れた時に表示されるフォーム
-    var $formLost = $('#lost-form');
-    // 新規登録フォーム
-    var $formRegister = $('#register-form');
-    // 上記三つのフォームを囲うdiv
-    var $divForms = $('#modal-login-form-wrapper');
-    // 時間
-    var $modalAnimateTime = 300;
+    // // ログインフォーム
+    // var $formLogin = $('#login-form');
+    // // パスワード忘れた時に表示されるフォーム
+    // var $formLost = $('#lost-form');
+    // // 新規登録フォーム
+    // var $formRegister = $('#register-form');
+    // // 上記三つのフォームを囲うdiv
+    // var $divForms = $('#modal-login-form-wrapper');
+    // // 時間
+    // var $modalAnimateTime = 300;
     
-    $('#login_register_btn').on("click", function () { modalAnimate($formLogin, $formRegister) });
-    $('#register_login_btn').on("click", function () { modalAnimate($formRegister, $formLogin); });
-    $('#login_lost_btn').on("click", function () { modalAnimate($formLogin, $formLost); });
-    $('#lost_login_btn').on("click", function () { modalAnimate($formLost, $formLogin); });
-    $('#lost_register_btn').on("click", function () { modalAnimate($formLost, $formRegister); });
+    // $('#login_register_btn').on("click", function () { modalAnimate($formLogin, $formRegister) });
+    // $('#register_login_btn').on("click", function () { modalAnimate($formRegister, $formLogin); });
+    // $('#login_lost_btn').on("click", function () { modalAnimate($formLogin, $formLost); });
+    // $('#lost_login_btn').on("click", function () { modalAnimate($formLost, $formLogin); });
+    // $('#lost_register_btn').on("click", function () { modalAnimate($formLost, $formRegister); });
     
-    function modalAnimate ($oldForm, $newForm) {
-      var $oldH = $oldForm.height();
-      var $newH = $newForm.height();
-      $divForms.css("height",$oldH);
-      $oldForm.fadeToggle($modalAnimateTime, function(){
-        $divForms.animate({height: $newH}, $modalAnimateTime, function(){
-          $newForm.fadeToggle($modalAnimateTime);
-        });
-      });
-    }
+    // function modalAnimate ($oldForm, $newForm) {
+    //   var $oldH = $oldForm.height();
+    //   var $newH = $newForm.height();
+    //   $divForms.css("height",$oldH);
+    //   $oldForm.fadeToggle($modalAnimateTime, function(){
+    //     $divForms.animate({height: $newH}, $modalAnimateTime, function(){
+    //       $newForm.fadeToggle($modalAnimateTime);
+    //     });
+    //   });
+    // }
 
     
     
