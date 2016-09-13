@@ -12,11 +12,15 @@
     .container
       %ol.breadcrumb-list.booking-step
         %li
-          %a{:href => ""} トップ
+          =link_to "トップ", "/"
+          / %a{:href => "/"} トップ
         %li
-          %span カテゴリ：
-          %a{:href => "#"} デザイン
-          %span キーワード：デザイン
+          -if params[:searchCategory].present?
+            %span カテゴリ：
+            =link_to Category.find(params[:searchCategory]).name, search_items_path(searchCategory: Category.find(params[:searchCategory]).id)
+          -if params[:searchKeyword].present?
+            %span
+              = "キーワード：#{params[:searchKeyword]}"
   .content-wrapper
     .container
       .row
