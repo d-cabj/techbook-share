@@ -9,7 +9,6 @@ class ItemsController < ApplicationController
   end
 
   def search
-    binding.pry
     if params[:searchCategory].present? && params[:searchKeyword].present?
       @resultItems = Item.where(category_id: params[:searchCategory].to_i).where('title LIKE(?)', "%#{params[:searchKeyword]}%").page(params[:page]).per(3)
     elsif params[:searchCategories].present? && params[:searchKeyword].present? == false

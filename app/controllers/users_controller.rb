@@ -17,7 +17,6 @@ class UsersController < ApplicationController
         sign_in(current_user, bypass: true)
         redirect_to :back, notice: "お客様の情報を更新しました"
     elsif user_email_password_params.present?
-      binding.pry
       redirect_to :back, alert: "現在のパスワードの値が一致しませんでした" unless user_email_password_params(:old_email) == current_user.email
       current_user.update(user_email_password_params)
       sign_in(current_user, bypass: true)

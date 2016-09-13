@@ -11,7 +11,6 @@ class BuyController < ApplicationController
       redirect_to :back, alert: "利用規約、プライバシーポリシーに同意頂けたらボックスにチェックしてください"
     else
       purchase_params.each do |purchase_param|
-        binding.pry
          unless purchase_param[1].present?
            redirect_to :back, alert: "全項目を入力してください"
            break
