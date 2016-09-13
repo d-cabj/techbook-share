@@ -22,7 +22,7 @@
         %li
           =link_to "Home", "/"
         %li
-          =link_to "#{@item.category.name}", "/category/#{@item.category_id}"
+          =link_to "#{@item.category.name}", search_items_path(searchCategory: @item.category.id)
         %li
           %span
             = @item.title
