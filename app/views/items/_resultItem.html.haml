@@ -1,0 +1,19 @@
+.col-md-6.col-lg-4.pl-0.ml-0
+  .package-list-item.clearfix.pl-15
+    =link_to "/items/#{resultItem.id}", class: "package-list-item-link" do
+      .image
+        =image_tag(resultItem.itemImg, alt: resultItem.title)
+        .absolute-in-image
+          .duration
+            %span
+              = resultItem.category.name
+      .content
+        .row.gap-10
+          .col-sm-12.col-md-12
+            %h5
+              = resultItem.title
+            %p.line18
+              = resultItem.discription
+          .col-sm-12.col-md-12.text-left-sm
+            .price
+              = "#{resultItem.price} 円（税・送料別）"

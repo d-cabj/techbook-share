@@ -1,0 +1,72 @@
+.clear
+/ start Main Wrapper
+.main-wrapper
+  / start end Page title
+  .page-title{:style => "background-image:url('images/books_on_desk2.jpg');"}
+    .container
+      .row
+        .col-sm-10.col-sm-offset-1.col-md-6.col-md-offset-3
+          %h1.hero-title 書籍一覧
+  / end Page title
+  .breadcrumb-wrapper.bg-light-2
+    .container
+      %ol.breadcrumb-list.booking-step
+        %li
+          %a{:href => ""} トップ
+        %li
+          %span カテゴリ：
+          %a{:href => "#"} デザイン
+          %span キーワード：デザイン
+  .content-wrapper
+    .container
+      .row
+        .col-sm-4.col-md-3
+          %aside.sidebar.with-filter
+            .sidebar-search-wrapper.bg-light-2
+              .sidebar-search-header
+                %h4 再検索
+              .sidebar-search-content
+                =form_tag(search_items_path, controller: :items, action: :search, method: :get) do
+                  .form-group
+                    =select_tag :searchCategory, options_for_select(@searchCategories), name: "searchCategory", :include_blank => "カテゴリを選択", class: "select2-multi form-control"
+                  .form-group
+                    = text_field :searchKeyword, nil, name: "searchKeyword", placeholder: "タイトルのキーワード", class: "form-control"
+                  %button.btn.btn-primary.btn-block{type: "submit"} 書籍を検索
+                  / %a.btn.btn-primary.btn-block{:href => "#"} 検索
+        .col-sm-8.col-md-9
+          .sorting-wrappper
+            .sorting-header
+              %p.sorting-lead 
+                = "#{@resultItems.total_count}件の検索結果が見つかりました。"
+          .package-list-item-wrapper.on-page-result-page.clearfix
+            =render partial: "resultItem", collection: @resultItems
+          .pager-wrappper.clearfix
+            .pager-innner
+              .flex-row.flex-align-middle
+                .flex-column.flex-sm-12
+                  = "#{@resultItems.total_count}件中#{@resultItems.offset_value + 1}から#{@resultItems.offset_value + @resultItems.length}件目を表示しています。"
+                .flex-column.flex-sm-12
+                  = paginate @resultItems
+                  / %nav.pager-right
+                  /   %ul.pagination
+                  /     %li
+                  /       %a{"aria-label" => "Previous", :href => "#"}
+                  /         %span{"aria-hidden" => "true"} «
+                  /     %li.active
+                  /       %a{:href => "#"} 1
+                  /     %li
+                  /       %a{:href => "#"} 2
+                  /     %li
+                  /       %a{:href => "#"} 3
+                  /     %li
+                  /       %span ...
+                  /     %li
+                  /       %a{:href => "#"} 11
+                  /     %li
+                  /       %a{:href => "#"} 12
+                  /     %li
+                  /       %a{:href => "#"} 13
+                  /     %li
+                  /       %a{"aria-label" => "Next", :href => "#"}
+                  /         %span{"aria-hidden" => "true"} »
+/ end Main Wrapper
