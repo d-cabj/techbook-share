@@ -16,6 +16,13 @@
             %span / 7 review
         .absolute-in-content
           %span.btn
-            %i.fa.fa-heart-o
+            - if user_signed_in?
+              - if item.likes.find_by(user_id: current_user.id)
+                = image_tag("/assets/heart_colored.png")
+              -else
+                = image_tag("/assets/icon_heart.svg")
+            - else
+              = image_tag("/assets/icon_heart.svg")
+            / %i.fa.fa-heart-o
           .price
             = "#{item.price} 円"
