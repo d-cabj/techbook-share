@@ -13,7 +13,7 @@
 # User
 ## association
 
-- has_many :purchase_historys
+- has_many :purchase_histories
 
 ## table
 
@@ -40,6 +40,9 @@
 - .references :category
 - .integer :price
 - .integer :postage
+- .references :admin_user
+- .integer :likes_count, default: 0
+
 
 -----------
 # PurchaseHistory
@@ -68,3 +71,25 @@
 ## table
 
 - .string :name
+- .integer :items_count, default: 0
+
+-----------
+# AdminUser
+## association
+
+- has_many :items
+
+## table
+
+- .string :nickname
+
+-----------
+# like
+## association
+
+- belongs_to :item, counter_cache: :likes_count
+
+## table
+
+- .references :user
+- .references :item
