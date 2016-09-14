@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160912103836) do
+ActiveRecord::Schema.define(version: 20160914045211) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -65,9 +65,20 @@ ActiveRecord::Schema.define(version: 20160912103836) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "admin_user_id", limit: 4
+    t.integer  "likes_count",   limit: 4,     default: 0
   end
 
   add_index "items", ["admin_user_id"], name: "index_items_on_admin_user_id", using: :btree
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "item_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "likes", ["item_id"], name: "fk_rails_00045f60f7", using: :btree
+  add_index "likes", ["user_id"], name: "fk_rails_1e09b5dabf", using: :btree
 
   create_table "purchase_histories", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -109,4 +120,6 @@ ActiveRecord::Schema.define(version: 20160912103836) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "items", "admin_users"
+  add_foreign_key "likes", "items"
+  add_foreign_key "likes", "users"
 end
