@@ -26,11 +26,14 @@
         %li
           %span
             = @item.title
+  .like-bar
+    #js-like_button
+      = render partial: "like", locals: {item: @item, like: @like }
   .content-wrapper
     .container
       .row
         .col-sm-3.col-xs-12.mb-50-xs
-          .scrollspy-sidebar.sidebar-detail{:role => "complementary"}
+          %div{:role => "complementary"}
             =image_tag(@item.itemImg, alt: @item.title)
         .col-md-9.mt-30-xs{:role => "main"}
           .detail-content-wrapper

@@ -49,3 +49,20 @@
   color: #666;
   font-weight: lighter;
 }
+
+.like-bar {
+  padding: 15px 20px;
+}
+
+.like-button {
+  padding-right: 35px;
+
+  img {
+    max-width: 18px;
+    margin-right: 10px;
+  }
+
+  .num {
+    font-weight: bold;
+  }
+}

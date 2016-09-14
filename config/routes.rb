@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get 'search'
       #collectionはRails7つのアクション以外のアクション名を定義する時に使う
     end
+    resources :likes, only: [:create, :destroy]
   end
   # resources :category, only: [:show, :index] →items/searchでcategory/showを代用したため削除。カテゴリー一覧ページ(category/index)も不必要と判断したため削除。
   get 'buy/:id' => "buy#new" # 購入ページの表示

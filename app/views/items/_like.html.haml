@@ -1,0 +1,15 @@
+- if item.likes.find_by(user_id: current_user.id)
+  = button_to item_like_path(item,like), method: :delete, class: "btn btn-default like-button decrement-button", remote: true do
+    = image_tag("/assets/heart_colored.png", style: "float: left")
+    %span{style: "display: block; float: left;"}
+      Like
+    %span.num{style: "display: block; float: left;"}
+      = item.likes_count
+- else
+  = button_to item_likes_path(item), method: :post, class: "btn btn-default like-button increment-button", remote: true do
+    = image_tag("/assets/icon_heart.svg", style: "float: left")
+    %span{style: "display: block; float: left;"}
+      Like
+    %span.num{style: "display: block; float: left;"}
+      = item.likes_count
+.clear
