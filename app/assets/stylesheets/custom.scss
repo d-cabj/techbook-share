@@ -50,8 +50,13 @@
   font-weight: lighter;
 }
 
-.like-bar {
+.like-rating-bar {
   padding: 15px 20px;
+}
+
+#js-like_button{
+  display: inline-block;
+  float:left;
 }
 
 .like-button {
@@ -70,5 +75,22 @@
 .absolute-in-content {
   img {
     max-width: 18px;
+  }
+}
+
+.rating-wrapeer_items-show{
+  display: inline-block;
+  float:left;
+  margin-left: 20px;
+
+  .raty-wrapper {
+
+    .star-rating-read-only {
+      padding: 11px 0px;
+
+      img {
+        width: 18px;
+      }
+    }
   }
 }

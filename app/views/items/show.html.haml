@@ -26,9 +26,13 @@
         %li
           %span
             = @item.title
-  .like-bar
+  .like-rating-bar
     #js-like_button
       = render partial: "like", locals: {item: @item, like: @like }
+    .rating-wrapper.rating-wrapeer_items-show
+      .raty-wrapper
+        .star-rating-read-only{"data-rating-score" => "3.7"}
+  .clear
   .content-wrapper
     .container
       .row
