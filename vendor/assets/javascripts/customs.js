@@ -1,7 +1,7 @@
-//  * Sticky Header
-//  */
 +function ($) {
   'use strict';
+  //  * Sticky Header
+  //  */
   $(function() {
     $(".container-wrapper").waypoint(function(direction) {
       if (direction === "down"){
@@ -52,6 +52,12 @@
         });
       });
     }
+  });
+
+  // call or hide CommentFunction
+  $(function(){
+    var 
+
   });
 }(jQuery);
 
