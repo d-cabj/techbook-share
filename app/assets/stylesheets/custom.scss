@@ -94,3 +94,28 @@
     }
   }
 }
+
+.item-reviews {
+    h4 {
+      padding-bottom: 20px;
+    }
+
+    form {
+      margin: 40px 0;
+    }
+
+    .form-group {
+      textarea {
+        width: 100%;
+    }
+  }
+}
+
+.review-profileImg{
+  max-width: none;
+  border-radius: 50%;
+}
+
+.display_none {
+  display:none;
+}
