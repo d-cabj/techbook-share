@@ -48,7 +48,10 @@
             .pager-innner
               .flex-row.flex-align-middle
                 .flex-column.flex-sm-12
-                  = "#{@resultItems.total_count}件中#{@resultItems.offset_value + 1}から#{@resultItems.offset_value + @resultItems.length}件目を表示しています。"
+                  - if @resultItems.empty?
+                    = ""
+                  - else
+                    = "#{@resultItems.total_count}件中#{@resultItems.offset_value + 1}から#{@resultItems.offset_value + @resultItems.length}件目を表示しています。"
                 .flex-column.flex-sm-12
                   = paginate @resultItems
                   / %nav.pager-right
