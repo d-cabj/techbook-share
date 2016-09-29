@@ -72,8 +72,8 @@ $(document).on("turbolinks:load", function() {
 
   "use strict";
 
-    
-    
+
+
     /**
      * introLoader - Preloader
      */
