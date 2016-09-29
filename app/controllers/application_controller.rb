@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: "ログインしてください" unless user_signed_in?
   end
 
+  def escape_like(string)
+    string.gsub(/[\\%_]/){|m| "\\#{m}"}
+  end
+
   # Overwriting the sign_out redirect path method
   # def after_sign_out_path_for(resource_or_scope)
   #   root_path
