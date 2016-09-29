@@ -54,11 +54,17 @@
     }
   });
 
-  // call or hide CommentFunction
+  // open or hide ReviewFunction
   $(function(){
-    var 
-
-  });
+    $(".js_reviews_open_hide_btn").on("click", function(){
+      if($("#js_reviews_list").hasClass("display_none")){
+        $("#js_reviews_list").removeClass("display_none");
+      }
+      else {
+        $("#js_reviews_list").addClass("display_none");
+      }
+    })
+  })
 }(jQuery);
 
 
