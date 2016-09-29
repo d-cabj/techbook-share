@@ -1,0 +1,2 @@
+$("#js_reviews_count").html(" <%= j(render partial: "items/count", locals: {count: @count}) %>")
+$("#js_reviews_list").html(" <%= j(render partial: "items/review", collection: @reviews) %>")
