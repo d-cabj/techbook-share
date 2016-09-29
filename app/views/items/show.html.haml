@@ -91,6 +91,23 @@
                             = @item.discription
                 .text-center.pt-10
                   %a.btn.btn-primary.btn-full-width{:href => "/buy/#{@item.id}"} 購入ページヘ
+                .row.item-reviews
+                  %h4.col-md-12.col-sm-12
+                    = link_to "Reviews", "", remote: true, class: "js_reviews_open_hide_btn"
+                    %span#js_reviews_count.num
+                      = render partial: "count", locals: {count: @count}
+                      / (#{@item.reviews.count})
+                  .col-md-12.col-sm-12
+                    #js_reviews_list
+                      = render partial: "review",collection: @reviews
+                    - if user_signed_in?
+                      = form_for [@item, @review], html: {class:'form-inline'}, role: "form", remote: true do |f|
+                        %h4 Write a Review
+                        .row
+                          .form-group.col-md-10.col-sm-10
+                            = f.text_area :review, placeholder: "Your reviews", rows: "3"
+                          .form-group.col-md-2.col-sm-2
+                            %button.btn.btn-primary Review
             .detail-content
               .section-title.text-left
                 %h4 関連する書籍
