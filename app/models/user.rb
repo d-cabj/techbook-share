@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:nickname]
   validates :nickname, presence: true, uniqueness: true
   has_many :purchaseHistories
+  has_many :reviews
   mount_uploader :profileImg, ProfileImgUploader
 
   def self.find_first_by_auth_conditions(warden_conditions)
