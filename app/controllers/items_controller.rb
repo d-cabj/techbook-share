@@ -7,6 +7,9 @@ class ItemsController < ApplicationController
   def show
     @sameCategoryItems = Item.where(category_id: @item.category_id).order("created_at DESC").page(params[:page]).per(3)
     @like = @item.likes.find_by(user_id: current_user.id)
+    @review = Review.new
+    @reviews = @item.reviews
+    @count = @reviews.count
   end
 
   def search

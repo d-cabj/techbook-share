@@ -1,0 +1,10 @@
+.media
+  .media-left
+    = link_to image_tag(review.user.profileImg,alt: "64x64", "data-holder-rendered": "true", style: "width: 64px; height: 64px;", class: "review-profileImg"), user_path(review.user)
+  .media-body
+    %h4#top-aligned-media.media-heading
+      = link_to review.user.nickname, user_path(review.user)
+      - if user_signed_in?
+        = link_to "削除", item_review_path(review.item, review), class: "btn", data:{confirm: "本当に削除しますか？"}, method: :delete, remote: true
+    %p
+      = review.review

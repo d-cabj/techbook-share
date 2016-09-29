@@ -1,7 +1,7 @@
-//  * Sticky Header
-//  */
 +function ($) {
   'use strict';
+  //  * Sticky Header
+  //  */
   $(function() {
     $(".container-wrapper").waypoint(function(direction) {
       if (direction === "down"){
@@ -53,6 +53,18 @@
       });
     }
   });
+
+  // open or hide ReviewFunction
+  $(function(){
+    $(".js_reviews_open_hide_btn").on("click", function(){
+      if($("#js_reviews_list").hasClass("display_none")){
+        $("#js_reviews_list").removeClass("display_none");
+      }
+      else {
+        $("#js_reviews_list").addClass("display_none");
+      }
+    })
+  })
 }(jQuery);
 
 
